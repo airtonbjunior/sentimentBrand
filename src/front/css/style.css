@@ -1,0 +1,39 @@
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	height: 100%;
+	min-height: 100%
+	position: relative;
+  	margin: 0;
+}
+
+.wrapper-all {
+	width: 100%;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+}
+
+.logo {
+	/* Centralize the logo inside div class "logo" -> http://stackoverflow.com/a/402643 */
+	background: url('../img/stadistics.png') no-repeat center center;
+	height: 100px;
+	margin-bottom: 20px;
+	margin-top: -150px;
+}
+
+.search-input {
+	padding: 10px;
+	margin-bottom: 20px;
+	width: 500px; 
+}
+
+button {
+	border: 0px;
+	padding: 10px 20px 10px 20px;
+}
