@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sentiment Brand</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+	<link rel='shortcut icon' type='image/x-icon' href="{{ url_for('static', filename='img/favicon.png') }}"/>
+</head>
+<body>
+	<div id="wrapper" class="wrapper-all">
+		<div class="logo"></div>
+		<input id="search-input"   class="search-input"   placeholder="Search a topic"></input>
+		<input id="quantity-input" class="quantity-input" placeholder="Quantity" type="number" name="quantity" min="1" max="5" value=1>
+		<div class="buttons">
+			<button id="btn-search" onClick="searchFn()">Let's fun!</button>
+		</div>
+		<div>
+			<div id="loading" class="loading hide-load">Loading...</div>
+			<div class='tweets'></div>
+			<span id="content-time-ajax"></span>
+		</div>
+	</div>
+	<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</body>
+</html>

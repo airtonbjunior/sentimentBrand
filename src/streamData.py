@@ -7,6 +7,7 @@
 	TO-DO: describe the file
 """
 import vars as var
+import json
 from streamListener import *
 import tweepy
 
@@ -27,7 +28,7 @@ def logonAPI():
 		TO-DO: documentation
 	"""
 	print("[LOG][Logging on Twitter API]")
-	getCredentials('../../credentials.secret')
+	getCredentials(var.CREDENTIALS['path'])
 	auth = tweepy.OAuthHandler(var.CREDENTIALS['consumerKey'], var.CREDENTIALS['consumerSecret'])
 	auth.set_access_token(var.CREDENTIALS['accessToken'], var.CREDENTIALS['accessTokenSecret'])
 
@@ -37,7 +38,9 @@ def logonAPI():
 
 def searchTopic(topic, items):
 	print("[LOG][Searching for '{}' with limit of {} items]".format(topic, items))
-	return tweepy.Cursor(var.API.search, q="abc").items(items)
+
+	return [status._json for status in tweepy.Cursor(var.API.search, q=topic).items(items)]
+	#return tweepy.Cursor(var.API.search, q=topic).items(items)
 
 
 def streamTopic(topic):
@@ -45,3 +48,7 @@ def streamTopic(topic):
 	stream_listener = StreamListener()
 	stream = tweepy.Stream(auth=var.API.auth, listener=stream_listener)
 	stream.filter(track=[topic])
+
+
+
+logonAPI()
