@@ -19,6 +19,11 @@ def getTime():
 def getTweets():
 
 	tweets = searchTopic(str(request.args['topic']), int(request.args['quantity']))
+
+	#tweetsReturn
+
+	for tweet in tweets:
+		tweet['sentiment'] = str(getSentiment(tweet['text']))
 	
 	print(str(request.args['topic']))
 	print(str(request.args['quantity']))

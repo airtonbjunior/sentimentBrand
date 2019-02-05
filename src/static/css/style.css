@@ -6,6 +6,12 @@
 	--bg-page-color: #DBEBC0;
 	--bg-tweets-card: #523249;
 	--bg-button-submit: #815355;
+
+	--bg-tweet-positive: blue;
+	--bg-tweet-negative: red;
+	--bg-tweet-neutral: gray;
+
+	--height-results: 400px;
 }
 
 html, body {
@@ -13,7 +19,7 @@ html, body {
 	min-height: 100%
 	position: relative;
   	margin: 0;
-  	background: var(--bg-page-color)
+  	/* background: var(--bg-page-color) */
 }
 
 .wrapper-all {
@@ -35,6 +41,12 @@ html, body {
 	left: 1%;
 }
 
+.wrapper-results {
+	margin-top:10px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
 .logo {
 	/* Centralize the logo inside div class "logo" -> http://stackoverflow.com/a/402643 */
 	background: url('../img/stadistics.png') no-repeat center center;
@@ -44,35 +56,62 @@ html, body {
 }
 
 .search-input {
-	padding: 10px;
+	padding: 20px;
 	margin-bottom: 20px;
+	margin-top: 5px;
 	width: 500px; 
+	font-size: 120%;
 }
 
 .quantity-input {
-	padding: 10px;
+	margin-top: 5px;
+	padding: 20px;
 	margin-bottom: 20px;
 	width: 80px; 
+	font-size: 120%;
 }
 
 .graph-results {
 	float: left;
+	border: 1px dashed;
+	width: 49%;
+	height: var(--height-results);
+	padding: 10px;
 }
 
 .tweets {
-	
-	border: 10px;
-	margin: 10px;
-	width: 50%;
+	border: 1px dashed;
+	padding: 10px;
+	width: 49%;
+	height: var(--height-results);
 	float: right;
+	overflow: auto;
 }
 
 #loading-div {
 	display: inline;
 }
 
+.loading-icon {
+	z-index: 2;
+    margin: 0 auto;
+    /*width: 100px;*/
+}
+
 .hide-load {
 	display: none;
+}
+
+.tweet-positive {
+	background: var(--bg-tweet-positive)
+}
+
+.tweet-negative {
+	background: var(--bg-tweet-negative)
+}
+
+.tweet-neutral {
+	background: var(--bg-tweet-neutral)
 }
 
 .tweet-on-list {
@@ -80,7 +119,7 @@ html, body {
 	text-align: center;
 	margin-left: auto;
   	margin-right: auto;
-	background: var(--bg-tweets-card);
+	/*background: var(--bg-tweets-card);*/
 	border: 1px dashed;
 	color: white;
 	padding: 10px;
@@ -88,7 +127,8 @@ html, body {
 
 button {
 	border: 0px;
-	padding: 15px 25px 15px 25px;
+	padding: 20px 30px 20px 30px;
 	background-color: var(--bg-button-submit);
 	color: white;
+	font-size: 110%;
 }

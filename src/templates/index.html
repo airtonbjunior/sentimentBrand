@@ -7,27 +7,34 @@
 </head>
 <body>
 	<div id="wrapper" class="wrapper-all">
-		<div class="logo"></div>
+		<!-- <div class="logo"></div> -->
 		<input id="search-input"   class="search-input"   placeholder="Search a topic"></input>
 		<input id="quantity-input" class="quantity-input" placeholder="Quantity" type="number" name="quantity" min="1" max="5" value=1>
 		<div class="buttons">
-			<button id="btn-search" onClick="searchFn()">Let's fun!</button>
+			<button id="btn-search" onClick="searchFn()">Search topic</button>
 		</div>
 		
 		<div class="wrapper-results">
-			<div id="loading" class="loading hide-load">Loading...</div>
+			<!-- <div id="loading" class="loading hide-load">Loading...</div> -->
 			<div class="graph-results">
-				<span>RESULT PLOT</span>
+				<canvas id="bar-chart" class="bar-chart"></canvas>
 			</div>
 
 			<div class='tweets'>
-				
+				<div id="loading-icon" class="hide-load">
+					<i class=""></i>
+					<span class="sr-only">Loading...</span>
+				</div>
+				<div class='tweets-list'>
+					
+				</div>
 			</div>
 			
 			<span id="content-time-ajax"></span>
 
 		</div>
 	</div>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="{{ url_for('static', filename='js/app.js') }}"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>

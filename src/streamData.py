@@ -9,7 +9,9 @@
 import vars as var
 import json
 from streamListener import *
+from textblob import TextBlob 
 import tweepy
+
 
 def getCredentials(secret_file_path):
 	"""
@@ -39,7 +41,7 @@ def logonAPI():
 def searchTopic(topic, items):
 	print("[LOG][Searching for '{}' with limit of {} items]".format(topic, items))
 
-	return [status._json for status in tweepy.Cursor(var.API.search, q=topic).items(items)]
+	return [status._json for status in tweepy.Cursor(var.API.search, q=topic, languages=['en']).items(items)]
 	#return tweepy.Cursor(var.API.search, q=topic).items(items)
 
 
@@ -49,6 +51,10 @@ def streamTopic(topic):
 	stream = tweepy.Stream(auth=var.API.auth, listener=stream_listener)
 	stream.filter(track=[topic])
 
+
+def getSentiment(message):
+	print("===> " + message)
+	return TextBlob(message).sentiment.polarity
 
 
 logonAPI()
