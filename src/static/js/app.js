@@ -133,7 +133,7 @@ function renderGraph(tweets) {
 	      	datasets: [
 	        {
 	          data: [pos, neg, neu], 
-	          backgroundColor: ["blue", "red", "gray"],
+	          backgroundColor: ["#84b9ef", "#ff5d5d", "#fbe4c9"],
 	          //borderColor: "red"
 	          //fill: false
 	        }
