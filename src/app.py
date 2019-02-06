@@ -20,10 +20,11 @@ def getTweets():
 
 	tweets = searchTopic(str(request.args['topic']), int(request.args['quantity']))
 
-	#tweetsReturn
+	s = ""
 
 	for tweet in tweets:
-		tweet['sentiment'] = str(getSentiment(tweet['text']))
+		s = str(getSentiment(tweet['text']))
+		tweet['sentiment_score'] = s
 	
 	print(str(request.args['topic']))
 	print(str(request.args['quantity']))

@@ -1,4 +1,4 @@
-/*
+	/*
 
 */
 
@@ -50,7 +50,7 @@ function getData(topic, quantity) {
 			$("#content-time-ajax").text(response.tweets_list)
 		}, 
 		error: function(error) {
-			console.log("argh!")
+			console.log("Fail on ajax call")
 			console.log(error);
 		}, 
 	});
@@ -69,19 +69,26 @@ function searchFn() {
 }
 
 
+var pos = 0,
+	neg = 0,
+	neu = 0
+
 function renderTweets(tweets) {
 
 	tweets_html = ""
 
 	tweets.forEach(function(x) {
 		classColor = ""
-		if (x.sentiment > 0) {
+		if (x.sentiment_score > 0) {
+			pos++;
 			classColor = "tweet-positive";
 		}
-		else if (x.sentiment < 0) {
+		else if (x.sentiment_score < 0) {
+			neg++;
 			classColor = "tweet-negative";
 		}
 		else {
+			neu++;
 			classColor = "tweet-neutral";
 		}
 		
@@ -96,21 +103,27 @@ function renderTweets(tweets) {
 
 function renderGraph(tweets) {
 	var sentiment_score = []
+
+	console.log(tweets)
+
 	tweets.forEach(function(x) {
-		sentiment_score.push(x.sentiment);
+		sentiment_score.push(x.sentiment_score);
+
 	})
 
 	console.log(sentiment_score)
 
 	new Chart(document.getElementById("bar-chart"), {
-	    type: 'line',
+	    type: 'doughnut',
+	    responsive: true,
 	    data: {
-	      datasets: [
+	    	labels: ['positive', 'negative', 'neutral'],
+	      	datasets: [
 	        {
-	          data: sentiment_score, 
-	          label: "TextBlob", 
-	          borderColor: "red", 
-	          fill: false
+	          data: [pos, neg, neu], 
+	          backgroundColor: ["blue", "red", "gray"],
+	          //borderColor: "red"
+	          //fill: false
 	        }
 	      ]
 	    },
@@ -122,4 +135,11 @@ function renderGraph(tweets) {
 	      }
 	    }
 	});
+}
+
+
+var pos, neg, neu = 0
+
+function countLabel(messages) {
+
 }

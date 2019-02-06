@@ -88,6 +88,10 @@ html, body {
 	overflow: auto;
 }
 
+.graph-results {
+	height: var(--height-results);
+}
+
 #loading-div {
 	display: inline;
 }
