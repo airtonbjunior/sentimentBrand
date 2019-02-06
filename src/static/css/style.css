@@ -7,11 +7,12 @@
 	--bg-tweets-card: #523249;
 	--bg-button-submit: #815355;
 
-	--bg-tweet-positive: blue;
-	--bg-tweet-negative: red;
-	--bg-tweet-neutral: gray;
+	--bg-tweet-positive: #84b9ef;
+	--bg-tweet-negative: #ff5d5d;
+	--bg-tweet-neutral: #fbe4c9;
 
 	--height-results: 400px;
+	--height-summary: 80px;
 }
 
 html, body {
@@ -67,7 +68,7 @@ html, body {
 	margin-top: 5px;
 	padding: 20px;
 	margin-bottom: 20px;
-	width: 80px; 
+	width: 100px; 
 	font-size: 120%;
 }
 
@@ -92,6 +93,37 @@ html, body {
 	height: var(--height-results);
 }
 
+.wrapper-summary {
+	margin-right: 10px;
+	margin-left: 10px;
+	display: flex;
+}
+
+.summary {
+	border: 1px dashed;
+	height: var(--height-summary);
+	padding: 10px;
+	margin: 5px 10px 5px 0px;
+	float:left; width:33%;
+	font-size: 120%;
+}
+
+.summary-pos {
+	background: var(--bg-tweet-positive);
+	flex-grow: 1;
+}
+
+.summary-neg {
+	background: var(--bg-tweet-negative);
+	flex-grow: 2;
+}
+
+.summary-neu {
+	background: var(--bg-tweet-neutral);
+	flex-grow: 3;
+	margin-right: 0px;
+}
+
 #loading-div {
 	display: inline;
 }
@@ -100,6 +132,10 @@ html, body {
 	z-index: 2;
     margin: 0 auto;
     /*width: 100px;*/
+}
+
+.hidden {
+	display: none;	
 }
 
 .hide-load {
@@ -125,8 +161,12 @@ html, body {
   	margin-right: auto;
 	/*background: var(--bg-tweets-card);*/
 	border: 1px dashed;
-	color: white;
+	/*color: white;*/
 	padding: 10px;
+}
+
+.btn-search-icon {;
+	margin-left: 3px;
 }
 
 button {

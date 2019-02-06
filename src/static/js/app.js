@@ -37,8 +37,8 @@ function getData(topic, quantity) {
 		beforeSend: function() {
         	document.getElementById("loading-icon").className += " fa fa-cog fa-spin fa-5x fa-fw";
         	$(".tweets-list").html("")
+			document.getElementById("btn-search-icon").className += " fa fa-spinner fa-spin";
         	document.getElementById("bar-chart").className = "hide-load";
-        	//document.getElementById("loading-icon").classList.remove("hide-load");
     	},
 		data: {'topic': topic, 'quantity': quantity},
 		success: function(response) {
@@ -46,8 +46,13 @@ function getData(topic, quantity) {
 			renderTweets(response);
 			renderGraph(response);
 			//document.getElementById("loading").className += " hide-load";
-			document.getElementById("loading-icon").className = "hide-load";
+			document.getElementById("wrapper-all-result").classList.remove("hidden");
+			document.getElementById("loading-icon").className    = "hide-load";
+			document.getElementById("btn-search-icon").className = "btn-search-icon hide-load";
 			$("#content-time-ajax").text(response.tweets_list)
+			$("#summary-desc-pos").text(pos)
+			$("#summary-desc-neg").text(neg)
+			$("#summary-desc-neu").text(neu)
 		}, 
 		error: function(error) {
 			console.log("Fail on ajax call")
@@ -77,6 +82,10 @@ function renderTweets(tweets) {
 
 	tweets_html = ""
 
+	pos = 0
+	neg = 0
+	neu = 0
+
 	tweets.forEach(function(x) {
 		classColor = ""
 		if (x.sentiment_score > 0) {
@@ -105,6 +114,9 @@ function renderGraph(tweets) {
 	var sentiment_score = []
 
 	console.log(tweets)
+	//infos = tweets.pop(); // get last index (infos about the ajax call)
+	//console.log(tweets)
+	//console.log(infos)
 
 	tweets.forEach(function(x) {
 		sentiment_score.push(x.sentiment_score);
@@ -135,11 +147,4 @@ function renderGraph(tweets) {
 	      }
 	    }
 	});
-}
-
-
-var pos, neg, neu = 0
-
-function countLabel(messages) {
-
 }

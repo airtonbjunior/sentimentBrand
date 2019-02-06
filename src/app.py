@@ -21,16 +21,38 @@ def getTweets():
 	tweets = searchTopic(str(request.args['topic']), int(request.args['quantity']))
 
 	s = ""
+	sentiments = []
+	
 
 	for tweet in tweets:
 		s = str(getSentiment(tweet['text']))
 		tweet['sentiment_score'] = s
+		sentiments.append(s)
 	
+	#pos, neg, neu = countClasses(sentiments)
+
+	#infos = {'pos': pos, 'neg': neg, 'neu': neu}
+
+	#tweets.append(infos)
+
 	print(str(request.args['topic']))
 	print(str(request.args['quantity']))
 
 	return json.dumps(tweets)
 	#return jsonify({'data': render_template('index2.html', tweets_list=tweets)})
+
+
+def countClasses(polarities):
+	pos, neg, neu = 0, 0, 0
+	for m in polarities:
+		if float(m) > 0:
+			pos += 1
+		elif float(m) < 0:
+			neg += 1
+		else:
+			neu += 1
+
+	return pos, neg, neu
 
 
 if __name__ == '__main__':
