@@ -2,7 +2,19 @@
 
 */
 
+var pos = 0,
+	neg = 0,
+	neu = 0;
+
+var tweet_stream_list = []
+
 startPage()
+
+
+window.setInterval(function(){
+	getStreamData('python', 10)
+}, 5000);
+
 
 function startPage() {
 	window.onload = function() {
@@ -27,6 +39,27 @@ function startPage() {
 }
 
 //var $loading = $('#loading-div').hide();
+
+function getStreamData(topic) {
+	$.ajax({
+		type: "GET", 
+		dataType: "json", 
+		url: "/get_tweets",
+		async: true,
+		beforeSend: function() {
+
+    	},
+		data: {'topic': topic, 'quantity': quantity},
+		success: function(response) {
+			tweet_stream_list.push(response);
+			console.log(response)
+		}, 
+		error: function(error) {
+			console.log("Fail on ajax call")
+			console.log(error);
+		}, 
+	});
+}
 
 function getData(topic, quantity) {
 	$.ajax({
@@ -72,11 +105,6 @@ function searchFn() {
 
 	getData(topic, quantity);
 }
-
-
-var pos = 0,
-	neg = 0,
-	neu = 0
 
 function renderTweets(tweets) {
 

@@ -42,6 +42,22 @@ def getTweets():
 	#return jsonify({'data': render_template('index2.html', tweets_list=tweets)})
 
 
+@app.route('/get_stream', methods=['GET', 'POST'])
+def getStream():
+
+	tweets = searchTopic(str(request.args['topic']), int(request.args['quantity']))
+
+	s = ""
+	sentiments = []	
+
+	for tweet in tweets:
+		s = str(getSentiment(tweet['text']))
+		tweet['sentiment_score'] = s
+		sentiments.append(s)
+
+	return json.dumps(tweets)
+
+
 def countClasses(polarities):
 	pos, neg, neu = 0, 0, 0
 	for m in polarities:

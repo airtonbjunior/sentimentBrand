@@ -154,6 +154,10 @@ html, body {
 	background: var(--bg-tweet-neutral)
 }
 
+.tweets-list {
+	position: relative;
+}
+
 .tweet-on-list {
 	width: 50%;
 	text-align: center;
@@ -163,6 +167,17 @@ html, body {
 	border: 1px dashed;
 	/*color: white;*/
 	padding: 10px;
+}
+
+.inner-triangle{
+    border-left: 20px solid transparent;
+    border-right: 20px solid green;
+    border-bottom: 20px solid transparent;
+    height: 0;
+    width: 0;
+    position: absolute;
+    right: 0px;
+    z-index: 2;
 }
 
 .btn-search-icon {;
